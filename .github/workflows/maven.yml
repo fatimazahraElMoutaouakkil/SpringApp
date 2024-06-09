@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
 
     steps:
@@ -23,3 +22,4 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean install
+      working-directory: ./spring-boot-hello-world-main
