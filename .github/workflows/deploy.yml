@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: '8'
+          distribution: 'temurin'
+          java-version: '17'
           java-package: 'jdk'
 
       - name: Install Maven
@@ -53,3 +53,8 @@ jobs:
 
           # Run phpMyAdmin container
           sudo docker run --name phpmyadmin-container --link mysql-container:db -p 8081:80 -d phpmyadmin/phpmyadmin
+
+      - name: Check services status
+        run: |
+          sudo docker ps
+          netstat -tuln
