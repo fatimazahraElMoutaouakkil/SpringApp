@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: self-hosted
@@ -32,6 +33,23 @@ jobs:
       - name: Run Spring Boot application
         run: |
           cd ~/Bureau/actions-runner/_work/SpringApp/SpringApp/spring-boot-hello-world-main
-          mvn spring-boot:run
-        env:
-          SPRING_PROFILES_ACTIVE: prod
+          nohup mvn spring-boot:run &
+
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io
+          sudo systemctl start docker
+          sudo systemctl enable docker
+
+      - name: Start MySQL and phpMyAdmin
+        run: |
+          # Pull MySQL and phpMyAdmin images
+          sudo docker pull mysql:5.7
+          sudo docker pull phpmyadmin/phpmyadmin
+
+          # Run MySQL container
+          sudo docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+
+          # Run phpMyAdmin container
+          sudo docker run --name phpmyadmin-container --link mysql-container:db -p 8081:80 -d phpmyadmin/phpmyadmin
