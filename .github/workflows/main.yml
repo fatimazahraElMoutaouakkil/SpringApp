@@ -26,12 +26,12 @@ jobs:
 
       - name: Build with Maven
         run: |
-          cd /home/ubuntu/Desktop/actions-runner/_work/SpringApp/SpringApp/spring-boot-hello-world-main
+          cd /Bureau/actions-runner/_work/SpringApp/SpringApp/spring-boot-hello-world-main
           mvn clean install
 
       - name: Run Spring Boot application
         run: |
-          cd /home/ubuntu/Desktop/actions-runner/_work/SpringApp/SpringApp/spring-boot-hello-world-main
+          cd /Bureau/actions-runner/_work/SpringApp/SpringApp/spring-boot-hello-world-main
           mvn spring-boot:run
         env:
           SPRING_PROFILES_ACTIVE: prod
