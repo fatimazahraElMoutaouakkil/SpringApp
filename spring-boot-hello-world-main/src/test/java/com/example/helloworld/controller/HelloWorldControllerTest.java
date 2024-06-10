@@ -22,6 +22,6 @@ public class HelloWorldControllerTest {
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Hello, world! Here is the site deployed with Spring Boot by Elmoutaouakkil and Zorqany."));
+                .andExpect(content().string("Hello, world! Here is the site deployed with Spring Boot by Elmoutaouakkil fatimaZahra and Zorqany Mariem."));
     }
 }
