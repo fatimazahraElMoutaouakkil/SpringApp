@@ -42,6 +42,11 @@ jobs:
           sudo systemctl start docker
           sudo systemctl enable docker
 
+      - name: Remove existing containers
+        run: |
+          sudo docker rm -f mysql-container || true
+          sudo docker rm -f phpmyadmin-container || true
+
       - name: Start MySQL and phpMyAdmin
         run: |
           # Pull MySQL and phpMyAdmin images
